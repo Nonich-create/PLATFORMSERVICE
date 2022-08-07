@@ -1,8 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using PLATFORMSERVICE.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+builder.Services.AddDbContext<AppDbContext>(opt =>
+    opt.UseInMemoryDatabase("InMem"));
+builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "PlatformSerivce", Version = "v1" });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
