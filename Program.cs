@@ -16,8 +16,8 @@ builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 //{
 //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "PlatformSerivce", Version = "v1" });
 //});
-
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+ 
 var app = builder.Build();
 
 //if (app.Environment.IsDevelopment())
