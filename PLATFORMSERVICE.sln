@@ -7,12 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PLATFORMSERVICE", "PLATFORM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{30EA8D78-D906-443D-B6F2-C1ADA8E11C19}"
 	ProjectSection(SolutionItems) = preProject
+		..\K8S\commands-depl.yaml = ..\K8S\commands-depl.yaml
 		..\Dockerfile = ..\Dockerfile
+		..\K8S\ingress-srv.yaml = ..\K8S\ingress-srv.yaml
+		..\K8S\local-pvc.yaml = ..\K8S\local-pvc.yaml
+		..\K8S\mssql-plat-depl.yaml = ..\K8S\mssql-plat-depl.yaml
 		..\K8S\platforms-depl.yaml = ..\K8S\platforms-depl.yaml
 		..\K8S\platforms-np-srv.yaml = ..\K8S\platforms-np-srv.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandsService", "..\CommandsService\CommandsService.csproj", "{C0DAFE53-F5D9-48D5-A23C-DC91D1D20EFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandsService", "..\CommandsService\CommandsService.csproj", "{C0DAFE53-F5D9-48D5-A23C-DC91D1D20EFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

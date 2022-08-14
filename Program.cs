@@ -14,9 +14,22 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 Console.WriteLine($"--> CommandService Endpoint {builder.Configuration["CommandService"]}");
+if (builder.Environment.IsProduction())
+{
+    Console.WriteLine("--> Using SqlServer Db");
+    builder.Services.AddDbContext<AppDbContext>(opt =>
+        opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformsConn")
+       // o => o.MigrationsAssembly("test")
+        ));
+}
+else
+{
+    Console.WriteLine("--> Using InMem Db");
+    builder.Services.AddDbContext<AppDbContext>(opt =>
+        opt.UseInMemoryDatabase("InMem"));
+}
 
-builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseInMemoryDatabase("InMem"));
+
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 
 builder.Services.AddHttpClient<ICommandDataClient, CommandDataClient>();
@@ -31,10 +44,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-PrepDb.PrepPopulation(app);
+PrepDb.PrepPopulation(app, builder.Environment.IsProduction());
 
 app.Run();
